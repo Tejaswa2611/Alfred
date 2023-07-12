@@ -13,16 +13,17 @@ class OpenAIService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $openAIAPIKey',
         },
-        body: jsonEncode({
-          "model": "gpt-3.5-turbo",
-          "messages": [
+        body: jsonEncode(
+          {
             {
-              'role': 'user',
-              'content':
-                  'Does this message want to generate an AI picture, image, art or anything similar? $prompt . Simply answer with a yes or no.',
+              "model": "gpt-3.5-turbo",
+              "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "Hello!"}
+              ]
             }
-          ],
-        }),
+          },
+        ),
       );
       print(res.body);
       if (res.statusCode == 200) {
